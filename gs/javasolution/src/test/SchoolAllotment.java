@@ -81,13 +81,15 @@ public class SchoolAllotment {
         }
     }
 
+        System.out.println();
         int remainingSeats = 0;
         for(int i=0;i < seats.size(); i++) {
             int available = seats.get(i);
+            System.out.printf("[school %d = %d seats ]", i+1, available);
             if(available > 0) remainingSeats+=available;
         }
 
-        System.out.println("\nUnallocated Students:" + remainingStudnets);
+        System.out.println("\nnUnallocated Students:" + remainingStudnets);
         System.out.println("Unallocated School Seats:" + remainingSeats);
         return new int[] {remainingSeats, remainingStudnets};
     }
