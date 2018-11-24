@@ -8,6 +8,7 @@ public class RemoveComments {
         boolean inComment = false;
         StringBuilder newline = new StringBuilder();
         List<String> ans = new ArrayList();
+        StringBuilder inCommentData = new StringBuilder();
         for (String line: source) {
             int i = 0;
             char[] chars = line.toCharArray();
@@ -19,13 +20,20 @@ public class RemoveComments {
                 } else if (inComment && i+1 < line.length() && chars[i] == '*' && chars[i+1] == '/') {
                     inComment = false;
                     i++;
+                    // clear string builders
+                    inCommentData.setLength(0); // set length of buffer to 0
+                    inCommentData.trimToSize(); // trim the underlying buffer
                 } else if (!inComment && i+1 < line.length() && chars[i] == '/' && chars[i+1] == '/') {
                     break;
                 } else if (!inComment) {
                     newline.append(chars[i]);
                 }
+                else if(inComment) {
+                    inCommentData.append(chars[i]);
+                }
                 i++;
             }
+
             if (!inComment && newline.length() > 0) {
                 ans.add(new String(newline));
             }
@@ -36,6 +44,9 @@ public class RemoveComments {
         {
             sb.append(s+"\n");
         }
+
+        if(inComment==true && inCommentData.length() > 0) // comment begin with '/*' but there is no closing of '*/'
+            sb.append(inCommentData.toString());
 
         return sb.toString();
     }
@@ -48,6 +59,7 @@ public class RemoveComments {
                 "   comment for ", "   testing */", "a = b + c;", "}"};
 
         System.out.print( removeComments(testData) );
+
     }
 
     }
