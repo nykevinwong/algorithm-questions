@@ -10,27 +10,16 @@ class ReverseEquaition
         int j = 0; 
         for (int i = 0; i < s.Length; i++) { 
             
-            // A space marks the end of the word 
             if (s[i] == '+' || s[i] == '-' ||  
                 s[i] == '/' || s[i] == '*') { 
                 
-                // insert the word at the begining 
-                // of the result string 
-//                result.insert(result.begin(),  
-//                    s.begin() + j, s.begin() + i); 
                 sb.Insert(0, s, j, i-j);
                 j = i + 1; 
                 
-                // insert the symbol 
-//               result.insert(result.begin(), s[i]); 
                 sb.Insert(0, s, i, 1);
             } 
         } 
         
-        // insert the last word in the string  
-        // to the result string 
-    //    result.insert(result.begin(), s.begin() + j,  
-    //                                    s.end()); 
           sb.Insert(0, s, j, s.Length-j);  
         return sb.ToString(); 
     } 
