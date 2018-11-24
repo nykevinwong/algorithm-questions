@@ -1,1 +1,3 @@
 *.exe
+/gs/javasolution/out
+/gs/javasolution/.idea
